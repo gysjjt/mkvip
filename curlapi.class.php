@@ -57,7 +57,7 @@ class curlapi{
 		curl_setopt($ch, CURLOPT_URL,$this -> url);
 		curl_setopt($ch, CURLOPT_HEADER,1);
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-		curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
+		//curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch,CURLOPT_POST,1);
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$this -> params);
@@ -97,9 +97,9 @@ class curlapi{
 
 		curl_setopt($ch, CURLOPT_URL,$this -> url);
 		curl_setopt($ch, CURLOPT_HEADER,0);
-		curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
+		curl_setopt($ch, CURLOPT_COOKIE,$_SESSION['cookies']);
 		curl_setopt($ch, CURLOPT_REFERER,$this -> referer);
 		$result=curl_exec($ch);
 		curl_close($ch);

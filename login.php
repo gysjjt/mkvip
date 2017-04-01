@@ -16,7 +16,7 @@ if($_GET['action'] == "code"){//获取验证码
 	$passwd = $_POST['passwd'];
 	$rand = $_POST['rand'];
 	//$params = "a=LoginIn&u=$login&p=$passwd&c=$rand&ts=0.6658900876500904&hi=";
-	$curl -> url = "http://vip.minicon.net/ajaxapp/commonajaxquery.ashx?a=LoginIn&u=$login&p=$passwd&c=$rand&ts=0.6658900876500904&hi=";
+	$curl -> url = "http://vip.minicon.net/ajaxapp/commonajaxquery.ashx?a=LoginIn&u=$login&p=$passwd&ts=0.6658900876500904&hi=";
 	$curl -> params = '';
 	$result = $curl -> login();
 	if($result == '0' || $result == 0){
@@ -31,15 +31,16 @@ if($_GET['action'] == "code"){//获取验证码
     //获取总数
     $curl -> url = "http://vip.minicon.net/iframepage/apppage/member_list.aspx";
     $rs = $curl -> curl();
-	echo "<pre>";
-	print_r($rs);
-	echo "</pre>";
-	exit;
-    preg_match('/共(.*)条/isU', $rs, $totals);
+    preg_match('/共(.*)条记录/isU', $rs, $totals);
     $totals = isset($totals[1])?$totals[1]:100;
-
+	$totals = preg_replace("/\s\n\t/","",$totals);
+	$totals = str_replace('&nbsp;','',$totals);
     //总页数
     $pages = ceil($totals/100);
+	echo "<pre>";
+	print_r($pages);
+	echo "</pre>";
+	exit;
 	for($i=1; $i<=$pages; $i++){
 		$params = "page.currNum=$i&page.rpp=100&set=cash";
 		$curl -> params = $params;
