@@ -152,6 +152,7 @@ class curlapi{
 	 */
 	public function getMembersInfo($rs, $page){
 		$rsBlank = preg_replace("/\s\n\t/","",$rs);
+		$rsBlank = str_replace('&nbsp;','',$rsBlank);
 		//$rsBlank = str_replace(' ', '', $rsBlank);
 		preg_match_all("/delForm.*>(.*)<\/form>/isU", $rsBlank ,$tables);
 		if(isset($tables[1][0])) {

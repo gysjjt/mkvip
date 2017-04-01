@@ -36,15 +36,12 @@ if($_GET['action'] == "code"){//获取验证码
 	$totals = preg_replace("/\s\n\t/","",$totals);
 	$totals = str_replace('&nbsp;','',$totals);
     //总页数
-    $pages = ceil($totals/100);
-	echo "<pre>";
-	print_r($pages);
-	echo "</pre>";
-	exit;
+    $pages = ceil($totals/50);
+
 	for($i=1; $i<=$pages; $i++){
-		$params = "page.currNum=$i&page.rpp=100&set=cash";
+		$params = "p=$i&birthBegin=&birthEnd=&czCountE=&czCountS=&czE=&czS=&gender=-1&invalidDate=0&jfE=&jfS=&keyword=&kkBegin=&kkEnd=&lxfBegin=&lxfEnd=&mctype=0&mtype=0&notxfDate=0&ostate=0&othkw=&qkE=&qkS=&sortPreField=&sortd=&sortf=&xfBegin=&xfCountE=&xfCountS=&xfE=&xfEnd=&xfS=&xfitem=0&yueE=&yueS=&zjE=&zjS=";
 		$curl -> params = $params;
-		$curl -> url = "http://vip8.sentree.com.cn/shair/memberInfo!memberlist.action?set=cash";
+		$curl -> url = "http://vip.minicon.net/iframepage/apppage/member_list.aspx";
 		$pagesData = $curl -> getMembersPage();
 		$data .= $curl ->getMembersInfo($pagesData, $i);
 	};
