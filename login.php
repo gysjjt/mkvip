@@ -45,6 +45,8 @@ if($_GET['action'] == "code"){//获取验证码
 		$pagesData = $curl -> getMembersPage();
 
 		$data .= $curl ->getMembersInfo($pagesData, $i);
+		
+		sleep(120);
 	};
 
     if($data == '') {
