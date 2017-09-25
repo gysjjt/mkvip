@@ -37,7 +37,6 @@ if($_GET['action'] == "code"){//获取验证码
 	$totals = str_replace('&nbsp;','',$totals);
     //总页数
     $pages = ceil($totals/50);
-
 	for($i=1; $i<=$pages; $i++){
 		$params = "p=$i&birthBegin=&birthEnd=&czCountE=&czCountS=&czE=&czS=&gender=-1&invalidDate=0&jfE=&jfS=&keyword=&kkBegin=&kkEnd=&lxfBegin=&lxfEnd=&mctype=0&mtype=0&notxfDate=0&ostate=0&othkw=&qkE=&qkS=&sortPreField=&sortd=&sortf=&xfBegin=&xfCountE=&xfCountS=&xfE=&xfEnd=&xfS=&xfitem=0&yueE=&yueS=&zjE=&zjS=";
 		$curl -> params = $params;
@@ -45,7 +44,6 @@ if($_GET['action'] == "code"){//获取验证码
 		$pagesData = $curl -> getMembersPage();
 
 		$data .= $curl ->getMembersInfo($pagesData, $i);
-		
 		sleep(120);
 	};
 
