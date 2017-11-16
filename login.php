@@ -9,14 +9,14 @@ header("Content-Type: text/html;charset=utf-8");
 include_once("curlapi.class.php");
 $curl = new curlapi();
 if($_GET['action'] == "code"){//获取验证码
-	$curl -> url = "http://vip.minicon.net/validatecode.aspx";
+	$curl -> url = "http://vip.mikong.com/validatecode.aspx";
 	echo $curl -> get_code();
 }else if($_GET['action'] == "login"){
 	$login = urlencode($_POST['login']);
 	$passwd = $_POST['passwd'];
 	$rand = $_POST['rand'];
 	//$params = "a=LoginIn&u=$login&p=$passwd&c=$rand&ts=0.6658900876500904&hi=";
-	$curl -> url = "http://vip.minicon.net/ajaxapp/commonajaxquery.ashx?a=LoginIn&u=$login&p=$passwd&ts=0.6658900876500904&hi=";
+	$curl -> url = "http://vip.mikong.com/ajaxapp/commonajaxquery.ashx?a=LoginIn&u=$login&p=$passwd&ts=0.6658900876500904&hi=";
 	$curl -> params = '';
 	$result = $curl -> login();
 	if($result == '0' || $result == 0){
@@ -29,7 +29,7 @@ if($_GET['action'] == "code"){//获取验证码
 	$data = '';
 
     //获取总数
-    $curl -> url = "http://vip.minicon.net/iframepage/apppage/member_list.aspx";
+    $curl -> url = "http://vip.mikong.com/iframepage/apppage/member_list.aspx";
     $rs = $curl -> curl();
     preg_match('/共(.*)条记录/isU', $rs, $totals);
     $totals = isset($totals[1])?$totals[1]:100;
@@ -40,11 +40,10 @@ if($_GET['action'] == "code"){//获取验证码
 	for($i=1; $i<=$pages; $i++){
 		$params = "p=$i&birthBegin=&birthEnd=&czCountE=&czCountS=&czE=&czS=&gender=-1&invalidDate=0&jfE=&jfS=&keyword=&kkBegin=&kkEnd=&lxfBegin=&lxfEnd=&mctype=0&mtype=0&notxfDate=0&ostate=0&othkw=&qkE=&qkS=&sortPreField=&sortd=&sortf=&xfBegin=&xfCountE=&xfCountS=&xfE=&xfEnd=&xfS=&xfitem=0&yueE=&yueS=&zjE=&zjS=";
 		$curl -> params = $params;
-		$curl -> url = "http://vip.minicon.net/iframepage/apppage/member_list.aspx";
+		$curl -> url = "http://vip.mikong.com/iframepage/apppage/member_list.aspx";
 		$pagesData = $curl -> getMembersPage();
 
 		$data .= $curl ->getMembersInfo($pagesData, $i);
-		sleep(120);
 	};
 
     if($data == '') {

@@ -64,8 +64,9 @@ class curlapi{
 		curl_setopt ($ch, CURLOPT_REFERER,$this -> url);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		$result=curl_exec($ch);
+
 		preg_match_all("/Set-Cookie:(.*);/siU", $result, $arr);
-		$_SESSION['cookies'] = $arr[1][1];
+		$_SESSION['cookies'] = $arr[1][2];
 
 		if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == '200') {
 			$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -245,7 +246,7 @@ class curlapi{
 		foreach($newdata as &$v){
 			//获取会员备注和欠款
 			$par = trim($v[17]);
-			$this -> url = "http://vip.minicon.net/iframepage/apppage/$par";
+			$this -> url = "http://vip.mikong.com/iframepage/apppage/$par";
 			$rs = $this -> curl();
 
 			//性别
